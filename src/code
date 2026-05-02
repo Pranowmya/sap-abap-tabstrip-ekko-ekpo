@@ -1,0 +1,68 @@
+*&---------------------------------------------------------------------*
+*& Module Pool       Z_Mp05
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+PROGRAM zmp05.
+
+CONTROLS tabstrip TYPE TABSTRIP.
+
+DATA: wa_ekko TYPE ekko.
+DATA: wa_ekpo TYPE ekpo.
+
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_2000  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE user_command_2000 INPUT.
+
+  IF sy-ucomm = 'TAB1'.
+    tabstrip-activetab = 'TAB1'.
+  ELSEIF sy-ucomm = 'TAB2'.
+    tabstrip-activetab = 'TAB2'.
+  ENDIF.
+
+ENDMODULE.                 " USER_COMMAND_2000  INPUT
+
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_2001  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE user_command_2001 INPUT.
+
+  IF sy-ucomm = 'SAVE'.
+    INSERT ekko FROM wa_ekko.
+
+    IF sy-subrc IS INITIAL. "zero
+      MESSAGE 'Data Inserted Successfully' TYPE 'S'.
+    ENDIF.
+
+  ENDIF.
+
+ENDMODULE.                 " USER_COMMAND_2001  INPUT
+
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_2002  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE user_command_2002 INPUT.
+
+  IF sy-ucomm = 'SAVE1'.
+    INSERT ekpo FROM wa_ekpo.
+
+    IF sy-subrc IS INITIAL. "zero
+      MESSAGE 'Data saved Successfully' TYPE 'S'.
+    ENDIF.
+
+  ENDIF.
+
+ENDMODULE.                 " USER_COMMAND_2002  INPUT
