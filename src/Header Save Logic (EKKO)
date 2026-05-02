@@ -1,0 +1,15 @@
+MODULE user_command_2001 INPUT.
+
+  IF sy-ucomm = 'SAVE'.
+
+    INSERT ekko FROM wa_ekko.
+
+    IF sy-subrc = 0.
+      MESSAGE 'Header Data Inserted Successfully' TYPE 'S'.
+    ELSE.
+      MESSAGE 'Error while inserting header data' TYPE 'E'.
+    ENDIF.
+
+  ENDIF.
+
+ENDMODULE.
