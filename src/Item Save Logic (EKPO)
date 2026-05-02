@@ -1,0 +1,15 @@
+MODULE user_command_2002 INPUT.
+
+  IF sy-ucomm = 'SAVE1'.
+
+    INSERT ekpo FROM wa_ekpo.
+
+    IF sy-subrc = 0.
+      MESSAGE 'Item Data Saved Successfully' TYPE 'S'.
+    ELSE.
+      MESSAGE 'Error while saving item data' TYPE 'E'.
+    ENDIF.
+
+  ENDIF.
+
+ENDMODULE.
